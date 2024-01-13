@@ -3,6 +3,7 @@ import {Inter} from 'next/font/google'
 import './globals.css'
 import Footer from './components/ui/Footer'
 import Navbar from './components/ui/Navbar'
+import Sidebar from './components/ui/Sidebar'
 const inter = Inter({subsets: ['latin']})
 
 export const metadata: Metadata = {
@@ -13,9 +14,12 @@ export const metadata: Metadata = {
 export default function RootLayout({children}: {children: React.ReactNode}) {
 	return (
 		<html lang="en" className="font-satoshi">
-			<Navbar />
-			<body className={inter.className}>{children}</body>
-			<Footer />
+			<body className={inter.className}>
+				<Navbar />
+				<Sidebar />
+				{children}
+				<Footer />
+			</body>
 		</html>
 	)
 }

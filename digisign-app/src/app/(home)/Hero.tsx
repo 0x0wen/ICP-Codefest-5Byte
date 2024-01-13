@@ -8,7 +8,7 @@ const Hero = () => {
 				<Image src={HeroBG} alt="" className="w-full h-full object-cover" />
 			</div>
 			<section>
-				<h1 className="font-bold text-7xl mb-5">DigiSign</h1>
+				<h1 className="font-bold text-7xl mb-5">DigiSignID</h1>
 				<h3 className="text-xl">
 					Empowering Your Documents, Securing Your Signatures
 				</h3>

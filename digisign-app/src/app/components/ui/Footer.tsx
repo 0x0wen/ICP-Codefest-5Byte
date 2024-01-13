@@ -13,7 +13,7 @@ const Footer = () => {
 					<h3 className="text-xl">Pricing & Subscription</h3>
 				</section>
 				<section>
-					<h3>support@digisign.com</h3>
+					<h3>support@digisignid.com</h3>
 					<h3>+62 8 2341 1245</h3>
 				</section>
 				<section>
