@@ -2,6 +2,9 @@
 
 An IC-blockchain-based Digital Signature Web Application
 
+![Homepage](./doc/homepage.png?raw=true "Title")
+
+
 ## Description
 
 This website has 2 main features:
