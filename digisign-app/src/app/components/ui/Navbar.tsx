@@ -77,7 +77,7 @@ const Navbar = () => {
 		>
 			<Scroll colored={setColoredNavbar} transparent={setTransparentNavbar} />
 			<li>
-				<Link href={'/'} className="  text-xl px-4 py-2 rounded-lg">
+				<Link to={'/'} className="  text-xl px-4 py-2 rounded-lg">
 					<Image src={DigiSignLogo} alt="" className="w-32" />
 				</Link>
 			</li>

@@ -10,7 +10,7 @@ const Price = ({
 }) => {
 	return (
 		<div
-			className={`  fixed top-0 right-0 z-50 h-full text-white  transition-all duration-500 bg-gradient-to-r from-color5 to-color4  ${styling} `}
+			className={`  fixed top-0 right-0 z-50 h-full  transition-all duration-1000 bg-gradient-to-r from-color5 to-color4  ${styling} `}
 		>
 			<Image
 				src={PriceBG}
