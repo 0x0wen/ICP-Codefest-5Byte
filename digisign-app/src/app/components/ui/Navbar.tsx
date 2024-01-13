@@ -1,11 +1,13 @@
 'use client'
-import Link from 'next/link'
 import Scroll from './Scroll'
 import {useState, useCallback, useEffect} from 'react'
 import {AuthClient} from '@dfinity/auth-client'
 import {Button} from '@mui/material'
 import ICLogo from '../../../../public/assets/icons/ic-logo.png'
 import Image from 'next/image'
+import DigiSignLogo from '../../../../public/assets/icons/DigiSignID.png'
+import {Link} from 'react-scroll'
+
 const Navbar = () => {
 	const [navbarBG, setNavbarBG] = useState(false)
 	const [client, setClient] = useState<AuthClient>()
@@ -69,47 +71,52 @@ const Navbar = () => {
 		<ul
 			className={
 				navbarBG
-					? 'fixed w-full top-0 z-50 flex justify-evenly text-white py-5 bg-color2 bg-opacity-90'
-					: 'fixed w-full top-0 z-50 flex justify-evenly text-white py-5'
+					? 'fixed w-full top-0 z-50 flex justify-evenly items-center text-white  bg-gradient-to-r from-color5 via-color2  to-color3 bg-opacity-70'
+					: 'fixed w-full top-0 z-50 flex justify-evenly items-center text-white '
 			}
 		>
 			<Scroll colored={setColoredNavbar} transparent={setTransparentNavbar} />
 			<li>
-				<Link
-					href={'/'}
-					className="bg-color2 bg-opacity-0 hover:bg-opacity-25 px-4 py-2 rounded-lg"
-				>
-					Home
+				<Link href={'/'} className="  text-xl px-4 py-2 rounded-lg">
+					<Image src={DigiSignLogo} alt="" className="w-32" />
 				</Link>
 			</li>
 			<li>
 				<Link
-					href={'/digital-signature'}
-					className="bg-color2 bg-opacity-0 hover:bg-opacity-25 px-4 py-2 rounded-lg"
+					duration={1000}
+					to="usp"
+					smooth={true}
+					className="bg-white bg-opacity-0 hover:bg-opacity-100 hover:text-color2 cursor-pointer text-lg  px-4 py-2 rounded-md"
 				>
-					Digital Signature
+					Why Us?
 				</Link>
 			</li>
 			<li>
 				<Link
-					href={'/document-validation'}
-					className="bg-color2 bg-opacity-0 hover:bg-opacity-25 px-4 py-2 rounded-lg"
+					duration={1000}
+					to="features"
+					smooth={true}
+					className="bg-white bg-opacity-0 hover:bg-opacity-100 hover:text-color2 cursor-pointer text-lg  px-4 py-2 rounded-md"
 				>
-					Document Validation
+					Features
 				</Link>
 			</li>
 			<li>
 				<Link
-					href={'/pricing'}
-					className="bg-color2 bg-opacity-0 hover:bg-opacity-25 px-4 py-2 rounded-lg"
+					duration={1000}
+					to="plan"
+					smooth={true}
+					className="bg-white bg-opacity-0 hover:bg-opacity-100 hover:text-color2 cursor-pointer text-lg  px-4 py-2 rounded-md"
 				>
-					Pricing
+					Plan
 				</Link>
 			</li>
 			<li>
 				<Link
-					href={'/contact-us'}
-					className="bg-color2 bg-opacity-0 hover:bg-opacity-25 px-4 py-2 rounded-lg"
+					duration={1000}
+					to="footer"
+					smooth={true}
+					className="bg-white bg-opacity-0 hover:bg-opacity-100 hover:text-color2 cursor-pointer text-lg  px-4 py-2 rounded-md"
 				>
 					Contact us
 				</Link>
@@ -117,7 +124,7 @@ const Navbar = () => {
 			<li>
 				<Button
 					onClick={signIn}
-					className="bg-white hover:text-color2	hover:bg-slate-100"
+					className="bg-white hover:text-color2 shadow-lg drop-shadow-xl	hover:bg-slate-100 px-5"
 				>
 					Login&nbsp;
 					<Image src={ICLogo} alt="" className="w-8" />

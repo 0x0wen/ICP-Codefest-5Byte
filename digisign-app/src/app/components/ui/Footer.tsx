@@ -1,8 +1,8 @@
 const Footer = () => {
 	return (
-		<section className="bg-color5  text-white pt-10 pb-20 px-40">
+		<section id="footer" className="bg-color5  text-white py-20 px-40">
 			<section className="grid grid-cols-3 gap-40 items-end">
-				<h2 className="font-bold mb-10 text-4xl">DigitalSignID</h2>
+				<h2 className="font-bold mb-10 text-4xl ">DigiSignID</h2>
 				<h3 className="font-bold mb-10">Our Contact</h3>
 				<h3 className="font-bold mb-10">Social Media</h3>
 			</section>

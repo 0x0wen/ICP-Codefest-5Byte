@@ -16,7 +16,6 @@ export default function RootLayout({children}: {children: React.ReactNode}) {
 		<html lang="en" className="font-satoshi">
 			<body className={inter.className}>
 				<Navbar />
-				<Sidebar />
 				{children}
 				<Footer />
 			</body>

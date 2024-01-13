@@ -1,72 +1,77 @@
 import Image from 'next/image'
-import HexaBG1 from '../../../public/assets/backgrounds/HexaBG1.png'
-import Glass from '../../../public/assets/icons/Glass.png'
-import Coin from '../../../public/assets/icons/Coin.png'
-import Person from '../../../public/assets/icons/Person.png'
-import ICPLogo from '../../../public/assets/icons/ICPLogo.png'
-const Price = () => {
+import PriceBG from '../../../public/assets/backgrounds/PriceBG.png'
+import Close from '../../../public/assets/icons/Close.svg'
+const Price = ({
+	styling,
+	closePrice,
+}: {
+	styling: string
+	closePrice: () => void
+}) => {
 	return (
-		<section className="relative text-black pt-28 pb-40">
-			<Image src={HexaBG1} alt="" className="absolute left-0 top-0 -z-10" />
-			<Image src={Glass} alt="" className="absolute left-72 top-16" />
-			<section>
-				<h2 className="text-3xl font-bold text-center mb-5">
-					Tailored Solutions for Every Need
-				</h2>
-				<h3 className="text-xl text-center mx-40">
-					Crafting Personalized Excellence: Tailored Solutions for Every Need
-				</h3>
-			</section>
-			<section className="flex flex-wrap items-center justify-center gap-20 mt-20">
-				<div className="bg-white border border-color2 text-center w-96 aspect-square p-6 shadow-xl">
-					<div className="gap-y-5">
-						<h3 className="text-2xl font-bold">Individual Plan</h3>
-						<p>
-							Unlock exclusive features effortlessly using DigitalSignID Coins.
-						</p>
+		<div
+			className={`  fixed top-0 right-0 z-50 h-full text-white  transition-all duration-500 bg-gradient-to-r from-color5 to-color4  ${styling} `}
+		>
+			<Image
+				src={PriceBG}
+				alt=""
+				className="absolute top-0 left-0 w-full h-full object-cover"
+			/>
+			<div className="py-20 space-y-10">
+				<section className="text-center">
+					<h1 className="text-4xl font-bold">Monthly Subscription</h1>
+					<h2 className="text-xl">
+						Unlock premium features seamlessly with our cost-effective monthly
+						subscription.
+					</h2>
+				</section>
+				<section className="grid grid-cols-4 gap-10 px-10">
+					<div className="flex flex-col gap-20 bg-white text-center py-8 bg-opacity-25 rounded-md shadow-lg shadow-white drop-shadow-lg h-[22rem]">
+						<h3 className="font-semibold text-xl ">1 Month</h3>
+						<section>
+							<p className="text-3xl font-semibold">3 ICP / Month</p>
+							<p className="">All features unlocked.</p>
+						</section>
+						<button className="bg-gradient-to-r from-color5 to-color2 px-4 py-2 rounded-md mx-10 hover:scale-110 hover:transition-all duration-500">
+							Get you box
+						</button>
 					</div>
-
-					<div className="flex flex-wrap justify-center items-center">
-						<Image src={ICPLogo} alt="" />
-						<h4>10 ICP / Digi Coin</h4>
+					<div className="flex flex-col gap-20 bg-white text-center py-8 bg-opacity-25 rounded-md shadow-lg shadow-white drop-shadow-lg h-[22rem]">
+						<h3 className="font-semibold text-xl ">3 Month</h3>
+						<section>
+							<p className="text-3xl font-semibold">3 ICP / Month</p>
+							<p className="">All features unlocked.</p>
+						</section>
+						<button className="bg-gradient-to-r from-color5 to-color2 px-4 py-2 rounded-md mx-10 hover:scale-110 hover:transition-all duration-500">
+							Get you box
+						</button>
 					</div>
-					<button className="text-white bg-color2 w-full py-2 rounded-md mt-4">
-						Register Now!
-					</button>
-				</div>
-				<div className="bg-white border border-color2 text-center w-96 aspect-square p-6 shadow-xl">
-					<div className="gap-y-5 mb-5">
-						<h3 className="text-2xl font-bold">Business Plan</h3>
-						<p>Choose efficiency and innovation with DigitalSignID.</p>
+					<div className="flex flex-col gap-20 bg-white text-center py-8 bg-opacity-25 rounded-md shadow-lg shadow-white drop-shadow-lg h-[22rem]">
+						<h3 className="font-semibold text-xl ">6 Month</h3>
+						<section>
+							<p className="text-3xl font-semibold">3 ICP / Month</p>
+							<p className="">All features unlocked.</p>
+						</section>
+						<button className="bg-gradient-to-r from-color5 to-color2 px-4 py-2 rounded-md mx-10 hover:scale-110 hover:transition-all duration-500">
+							Get you box
+						</button>
 					</div>
-
-					<div className="space-y-8">
-						<div className="flex gap-4 items-center">
-							<Image src={Coin} alt="" className="w-32 aspect-square" />
-							<div className="text-left">
-								<h4 className="text-md	 font-bold">Monthly Subscription</h4>
-								<p className="text-xs">
-									Unlock premium features seamlessly with our cost-effective
-									monthly subscription.
-								</p>
-							</div>
-						</div>
-						<div className="w-full h-[0.1rem] bg-slate-500 opacity-20"></div>
-						<div className="flex gap-4 items-center">
-							<Image src={Person} alt="" className="w-32 aspect-square" />
-							<div className="text-left">
-								<h4 className="text-md	 font-bold">Cuztomized</h4>
-								<p className="text-xs">
-									Tailor your solution with our custom offering. Contact us for
-									exclusive offers.
-								</p>
-							</div>
-						</div>
+					<div className="flex flex-col gap-20 bg-white text-center py-8 bg-opacity-25 rounded-md shadow-lg shadow-white drop-shadow-lg h-[22rem]">
+						<h3 className="font-semibold text-xl ">12 Month</h3>
+						<section>
+							<p className="text-3xl font-semibold">3 ICP / Month</p>
+							<p className="">All features unlocked.</p>
+						</section>
+						<button className="bg-gradient-to-r from-color5 to-color2 px-4 py-2 rounded-md mx-10 hover:scale-110 hover:transition-all duration-500">
+							Get you box
+						</button>
 					</div>
-					<button></button>
-				</div>
-			</section>
-		</section>
+				</section>
+			</div>
+			<button className="absolute top-5 right-5" onClick={closePrice}>
+				<Image src={Close} alt="" className="w-10" />
+			</button>
+		</div>
 	)
 }
 
