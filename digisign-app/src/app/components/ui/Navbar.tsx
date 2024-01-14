@@ -80,6 +80,7 @@ const Navbar = () => {
           // Your custom logout logic here
           e.preventDefault(); // Prevent the default navigation behavior
           logout();
+          router.push("/");
           // Add your logout logic here
         }}
       >
