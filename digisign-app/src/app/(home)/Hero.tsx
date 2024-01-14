@@ -16,7 +16,7 @@ const Hero = () => {
 		document.body.style.overflow = 'unset'
 		setOpenPrice(false)
 	}
-	const styling = openPrice ? 'w-full' : 'w-0'
+	const styling = openPrice ? 'w-full text-white ' : 'w-0 text-transparent'
 	return (
 		<section className="text-white flex justify-center h-screen items-center">
 			<div className="absolute top-0 left-0 w-full h-full -z-10">
