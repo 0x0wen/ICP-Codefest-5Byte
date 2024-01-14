@@ -3,6 +3,7 @@ import Document from './Document'
 import Image from 'next/image'
 import Signature from '../../../public/assets/icons/SignaturePurple.png'
 import Pass from '../../../public/assets/icons/Pass.png'
+import Link from 'next/link'
 const Dashboard = () => {
 	const documentData = [
 		{
@@ -23,7 +24,7 @@ const Dashboard = () => {
 		},
 	]
 	return (
-		<div className="h-screen ml-72 px-10 pt-10 pb-5">
+		<div className="ml-72 px-10 pt-10 pb-20 h-fit">
 			<h1 className="text-4xl font-bold text-color2">Dashboard</h1>
 			<section className="flex gap-5 py-10">
 				<div className="space-y-2 w-52 bg-gradient-to-br from-color2 to-color3 shadow-md shadow-color2  p-4 rounded-md ">
@@ -52,10 +53,11 @@ const Dashboard = () => {
 				<h2 className="text-xl w-64">Your Document</h2>
 				<div className="w-full h-[0.05rem] bg-black bg-opacity-30"></div>
 			</section>
-			<section className="grid grid-cols-1 gap-2 mt-10 w-full">
+			<section className="grid grid-cols-1 gap-2 mt-10 w-full place-items-end">
 				{documentData.map((doc, index) => (
 					<Document key={index} name={doc.name} source={doc.url} />
 				))}
+				<Link href="/my-document" className='underline text-color7 mt-5'>See all</Link>
 			</section>
 		</div>
 	)
