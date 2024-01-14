@@ -26,10 +26,11 @@ This website has 2 main features:
 ### Dependencies
 
 - NodeJS 18.\* or higher https://nodejs.org/en/download/
+- DFX 15 or higher
 - Internet Computer dfx CLI https://internetcomputer.org/docs/current/developer-docs/setup/install/
 - Visual Studio Code (Recommended Code Editor) https://code.visualstudio.com/Download
-- VSCode extension - Motoko (Recommended) https://marketplace.visualstudio.com/items?itemName=dfinity-foundation.vscode-motoko
-
+- Crypto Module
+  
 ```bash
 sh -ci "$(curl -fsSL https://internetcomputer.org/install.sh)"
 ```
@@ -45,7 +46,6 @@ sh -ci "$(curl -fsSL https://internetcomputer.org/install.sh)"
 
 ```
 cd digisign-app
-dfx start --background --clean
  ```
 Note: If you run it in MacOS, you may be asked to allow connections from dfx local server.
 
@@ -54,21 +54,35 @@ Note: If you run it in MacOS, you may be asked to allow connections from dfx loc
    
 ```
 npm install
-dfx deploy
 npm run dev
  ```
 
 3. The website will usually run on:
    http://localhost:3000/
 
-4. Cleanup - stop dfx server running in background:
+4. Deploying the canister
+```
+cd src
+cd azle
+npm install
+dfx start --background --clean
+dfx deps pull
+dfx deps deploy
+dfx deploy
+ ```
+5. Cleanup - stop dfx server running in background:
 
 ```
 dfx stop
 ```
-
+## Notes
+You will need to set up a .env file in the project directory according to the port where your deployed canister are
+it would look something like this :
+```
+NEXT_PUBLIC_CANISTER_ID_AZLE="bkyz2-fmaaa-aaaaa-qaaaq-cai"
+NEXT_PUBLIC_IC_HOST=http://localhost:4943
 ## Help
-
+```
 Any advise for common problems or issues.
 ```
 command to run if program contains helper info
