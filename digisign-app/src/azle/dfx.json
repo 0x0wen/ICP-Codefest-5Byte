@@ -1,0 +1,22 @@
+{
+  "canisters": {
+    "azle": {
+      "dependencies": ["internet_identity"],
+      "type": "custom",
+      "main": "src/index.ts",
+      "candid": "src/index.did",
+      "build": "npx azle azle",
+      "wasm": ".azle/azle/azle.wasm",
+      "gzip": true,
+      "declarations": {
+        "output": "declarations/dfx_generated/",
+
+        "node_compatibility": true
+      }
+    },
+    "internet_identity": {
+      "type": "pull",
+      "id": "rdmx6-jaaaa-aaaaa-aaadq-cai"
+    }
+  }
+}

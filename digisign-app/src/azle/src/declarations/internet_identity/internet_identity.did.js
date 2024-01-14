@@ -1,6 +1,24 @@
 export const idlFactory = ({ IDL }) => {
   const MetadataMap = IDL.Rec();
   const MetadataMapV2 = IDL.Rec();
+  const ArchiveConfig = IDL.Record({
+    'polling_interval_ns' : IDL.Nat64,
+    'entries_buffer_limit' : IDL.Nat64,
+    'module_hash' : IDL.Vec(IDL.Nat8),
+    'entries_fetch_limit' : IDL.Nat16,
+  });
+  const RateLimitConfig = IDL.Record({
+    'max_tokens' : IDL.Nat64,
+    'time_per_token_ns' : IDL.Nat64,
+  });
+  const InternetIdentityInit = IDL.Record({
+    'max_num_latest_delegation_origins' : IDL.Opt(IDL.Nat64),
+    'assigned_user_number_range' : IDL.Opt(IDL.Tuple(IDL.Nat64, IDL.Nat64)),
+    'max_inflight_captchas' : IDL.Opt(IDL.Nat64),
+    'archive_config' : IDL.Opt(ArchiveConfig),
+    'canister_creation_cycles_cost' : IDL.Opt(IDL.Nat64),
+    'register_rate_limit' : IDL.Opt(RateLimitConfig),
+  });
   const UserNumber = IDL.Nat64;
   MetadataMap.fill(
     IDL.Vec(
@@ -266,12 +284,6 @@ export const idlFactory = ({ IDL }) => {
     'canister_full' : IDL.Null,
     'registered' : IDL.Record({ 'user_number' : UserNumber }),
   });
-  const ArchiveConfig = IDL.Record({
-    'polling_interval_ns' : IDL.Nat64,
-    'entries_buffer_limit' : IDL.Nat64,
-    'module_hash' : IDL.Vec(IDL.Nat8),
-    'entries_fetch_limit' : IDL.Nat16,
-  });
   const ArchiveInfo = IDL.Record({
     'archive_config' : IDL.Opt(ArchiveConfig),
     'archive_canister' : IDL.Opt(IDL.Principal),
@@ -450,4 +462,24 @@ export const idlFactory = ({ IDL }) => {
       ),
   });
 };
-export const init = ({ IDL }) => { return []; };
+export const init = ({ IDL }) => {
+  const ArchiveConfig = IDL.Record({
+    'polling_interval_ns' : IDL.Nat64,
+    'entries_buffer_limit' : IDL.Nat64,
+    'module_hash' : IDL.Vec(IDL.Nat8),
+    'entries_fetch_limit' : IDL.Nat16,
+  });
+  const RateLimitConfig = IDL.Record({
+    'max_tokens' : IDL.Nat64,
+    'time_per_token_ns' : IDL.Nat64,
+  });
+  const InternetIdentityInit = IDL.Record({
+    'max_num_latest_delegation_origins' : IDL.Opt(IDL.Nat64),
+    'assigned_user_number_range' : IDL.Opt(IDL.Tuple(IDL.Nat64, IDL.Nat64)),
+    'max_inflight_captchas' : IDL.Opt(IDL.Nat64),
+    'archive_config' : IDL.Opt(ArchiveConfig),
+    'canister_creation_cycles_cost' : IDL.Opt(IDL.Nat64),
+    'register_rate_limit' : IDL.Opt(RateLimitConfig),
+  });
+  return [IDL.Opt(InternetIdentityInit)];
+};

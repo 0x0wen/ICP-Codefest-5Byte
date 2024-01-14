@@ -1,0 +1,7 @@
+service: () -> {
+    addPDF: (record {owner:principal; PDFDesc:text; PDFName:text; encryptedData:text}) -> (variant {Ok:record {id:principal; owner:principal; PDFDesc:text; PDFName:text; encryptedData:text}; Err:variant {Internal:text; NotFound:text; BadPayload:text; Unauthorized:text; BadPrincipal:text; Forbidden:text}});
+    createUser: (record {id:principal; name:text}) -> (variant {Ok:record {id:principal; name:text; pdfs:vec record {id:principal; owner:principal; PDFDesc:text; PDFName:text; encryptedData:text}}; Err:variant {Internal:text; NotFound:text; BadPayload:text; Unauthorized:text; BadPrincipal:text; Forbidden:text}});
+    getHistory: (principal) -> (variant {Ok:vec record {id:principal; owner:principal; PDFDesc:text; PDFName:text; encryptedData:text}; Err:variant {Internal:text; NotFound:text; BadPayload:text; Unauthorized:text; BadPrincipal:text; Forbidden:text}}) query;
+    getUser: (principal) -> (variant {Ok:record {id:principal; name:text; pdfs:vec record {id:principal; owner:principal; PDFDesc:text; PDFName:text; encryptedData:text}}; Err:variant {Internal:text; NotFound:text; BadPayload:text; Unauthorized:text; BadPrincipal:text; Forbidden:text}}) query;
+    validate: (record {encrypteddata:text; owner:principal}) -> (variant {Ok:record {id:principal; owner:principal; PDFDesc:text; PDFName:text; encryptedData:text}; Err:variant {Internal:text; NotFound:text; BadPayload:text; Unauthorized:text; BadPrincipal:text; Forbidden:text}}) query;
+}
