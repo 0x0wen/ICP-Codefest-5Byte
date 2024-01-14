@@ -154,13 +154,16 @@ export default Canister({
     if (!payload.encrypteddata || !payload.owner) {
       return Err({ BadPayload: "Bad payload" });
     }
+    console.log(payload.owner)
 
     const user = users.get(payload.owner);
+    console.log(user)
     if ("None" in user) {
       return Err({ NotFound: "User not found" });
     }
 
     const found: User = user.Some;
+    console.log(found)
 
     for (let i = 0; i < found.pdfs.length; i++) {
       if (found.pdfs[i].encryptedData === payload.encrypteddata) {

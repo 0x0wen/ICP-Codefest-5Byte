@@ -43,7 +43,6 @@ const AddUserPage = () => {
         if ("Ok" in user) {
           console.log("User added successfully!");
           router.push("/dashboard");
-          
         }
       }
     } catch (err) {

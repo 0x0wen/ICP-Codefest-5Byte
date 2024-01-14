@@ -14,6 +14,7 @@ import { useAuth } from "../authContext";
 import { makeAzleActor } from "../../service/actor";
 import { _SERVICE as AZLE } from "../../azle/declarations/dfx_generated/azle.did";
 import { Principal } from "@dfinity/principal";
+import processPdf from "../libs/encrypt.mjs";
 const VisuallyHiddenInput = styled("input")({
   clip: "rect(0 0 0 0)",
   clipPath: "inset(50%)",
@@ -53,14 +54,9 @@ const Validation = ({
   const [publisher, setPublisher] = useState("");
   const [loading, setLoading] = useState(false);
   const [users, setUsers] = useState<User[]>([]);
-  const submitHandler = (e: any) => {
-    e.preventDefault();
-    setLoading(true);
-    setTimeout(() => {
-      setLoading(false);
-    }, 3000);
-  };
-
+  const [encryptedData, setEncryptedData] = useState<string>("");
+  const [result, setResult] = useState<boolean | null>(null);
+  
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -77,6 +73,50 @@ const Validation = ({
 
     fetchData();
   }, [isAuthenticated, principal, login]);
+
+  const readFileAsBuffer = (file: File) => {
+    return new Promise<Buffer>((resolve, reject) => {
+      const reader = new FileReader();
+
+      reader.onload = (event) => {
+        const buffer = Buffer.from(event.target?.result as ArrayBuffer);
+        resolve(buffer);
+      };
+
+      reader.onerror = (error) => {
+        reject(error);
+      };
+
+      reader.readAsArrayBuffer(file);
+    });
+  };
+
+  const handleFileUpload = async (e : any) => {
+	e.preventDefault();
+    if (!selectedFile) {
+      console.error("Please select a file.");
+      return;
+    }
+    if (!selectedUser) {
+      console.error("Please select a user.");
+      return;
+    }
+    const pdfBuffer = await readFileAsBuffer(selectedFile);
+
+    const result = processPdf(pdfBuffer, selectedUser.toText());
+	console.log(principal.selectedUser)
+    const azle: AZLE = await makeAzleActor();
+    const Data = await azle.validate({
+      encrypteddata: result.encryptedData,
+      owner: selectedUser,
+    });
+
+	console.log(Data)
+    if ("Ok" in Data) {
+      setResult(true);
+    } else setResult(false);
+  };
+
   return (
     <div
       className={` fixed bottom-0 right-0  bg-white  transition-all z-[99999] duration-500 overflow-y-auto ${styling} `}
@@ -91,7 +131,7 @@ const Validation = ({
           a document you find online is authentic or not!
         </p>
       </section>
-      <form onSubmit={submitHandler}>
+      <form onSubmit={handleFileUpload}>
         <ul className="py-10 px-10 flex gap-10 ">
           <li className="space-y-5">
             <div className="flex items-center gap-5">
@@ -113,6 +153,7 @@ const Validation = ({
                 )}
                 <VisuallyHiddenInput
                   type="file"
+				  accept="application/pdf"
                   onChange={(e) => {
                     if (!e.target.files) return;
                     setSelectedFile(e.target.files[0]);
@@ -139,8 +180,10 @@ const Validation = ({
                 users.find((u) => u.id === user)?.name || ""
               }
               sx={{ width: 300 }}
-              value={selectedUser}
-              onChange={(_, newValue) => setSelectedUser(newValue)}
+              value={selectedUser ? selectedUser : null}
+              onChange={(e, value) => {
+                setSelectedUser(value);
+              }}
               renderInput={(params) => (
                 <TextField
                   {...params}
@@ -170,6 +213,19 @@ const Validation = ({
           </li>
         </ul>
       </form>
+      {result !== null && (
+        <p
+          className={`py-5 px-10 ${result ? "text-green-500" : "text-red-500"}`}
+        >
+          {result
+            ? `PDF file Validated by ${
+                users.find((u) => u.id === selectedUser)?.name || ""
+              }`
+            : `PDF File is Not Validated by ${
+                users.find((u) => u.id === selectedUser)?.name || ""
+              }`}
+        </p>
+      )}
     </div>
   );
 };
