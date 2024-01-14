@@ -6,7 +6,12 @@ import Wave from '../../../public/assets/backgrounds/HeroWave.png'
 import {Button} from '@mui/material'
 import {useState} from 'react'
 import Price from './Price'
+import { useRouter } from 'next/navigation'
+
+
 const Hero = () => {
+
+	const router = useRouter()
 	const [openPrice, setOpenPrice] = useState(false)
 	const onOpenPrice = () => {
 		document.body.style.overflow = 'hidden'
@@ -16,6 +21,11 @@ const Hero = () => {
 		document.body.style.overflow = 'unset'
 		setOpenPrice(false)
 	}
+	const handleClick = () =>{
+		router.push('/dashboard')
+	}
+
+	
 	const styling = openPrice ? 'w-full text-white ' : 'w-0 text-transparent'
 	return (
 		<section className="text-white flex justify-center h-screen items-center">

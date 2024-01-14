@@ -1,0 +1,13 @@
+{
+  "canisters": {
+    "frontend_canister": {
+      "frontend": {
+        "entrypoint": "out/index.html"
+      },
+      "source": ["out"],
+      "type": "assets"
+    }
+  },
+  "dfx": "0.15.2",
+  "version": 1
+}

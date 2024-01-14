@@ -1,10 +1,10 @@
 "use client";
 import { AuthClient } from "@dfinity/auth-client";
 import React, { createContext, useContext, useEffect, useState } from "react";
-import { createActor } from "@/config/declarations/dfx_generated";
+import { createActor, canisterId } from "../azle/declarations/dfx_generated";
 
 const AuthContext = createContext();
- 
+
 const defaultOptions = {
   /**
    *  @type {import("@dfinity/auth-client").AuthClientCreateOptions}
@@ -19,7 +19,7 @@ const defaultOptions = {
    * @type {import("@dfinity/auth-client").AuthClientLoginOptions}
    */
   loginOptions: {
-    identityProvider: `http://localhost:8080?canisterId=rdmx6-jaaaa-aaaaa-aaadq-cai#authorize`,
+    identityProvider: `https://identity.ic0.app`,
   },
 };
 
@@ -74,7 +74,6 @@ export const useAuthClient = (options = defaultOptions) => {
         identity,
       },
     });
-
     setActor(actor);
   }
 
