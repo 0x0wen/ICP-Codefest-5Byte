@@ -6,7 +6,8 @@ import {Button} from '@mui/material'
 import ICLogo from '../../../../public/assets/icons/ic-logo.png'
 import Image from 'next/image'
 import DigiSignLogo from '../../../../public/assets/icons/DigiSignID.png'
-import {Link} from 'react-scroll'
+import {Link as ScrollLink} from 'react-scroll'
+import Link from 'next/link'
 
 const Navbar = () => {
 	const [navbarBG, setNavbarBG] = useState(false)
@@ -77,49 +78,49 @@ const Navbar = () => {
 		>
 			<Scroll colored={setColoredNavbar} transparent={setTransparentNavbar} />
 			<li>
-				<Link to={'/'} className="  text-xl px-4 py-2 rounded-lg">
+				<Link href={'/'} className="  text-xl px-4 py-2 rounded-lg">
 					<Image src={DigiSignLogo} alt="" className="w-32" />
 				</Link>
 			</li>
 			<li>
-				<Link
+				<ScrollLink
 					duration={1000}
 					to="usp"
 					smooth={true}
 					className="bg-white bg-opacity-0 hover:bg-opacity-100 hover:text-color2 cursor-pointer text-lg  px-4 py-2 rounded-md"
 				>
 					Why Us?
-				</Link>
+				</ScrollLink>
 			</li>
 			<li>
-				<Link
+				<ScrollLink
 					duration={1000}
 					to="features"
 					smooth={true}
 					className="bg-white bg-opacity-0 hover:bg-opacity-100 hover:text-color2 cursor-pointer text-lg  px-4 py-2 rounded-md"
 				>
 					Features
-				</Link>
+				</ScrollLink>
 			</li>
 			<li>
-				<Link
+				<ScrollLink
 					duration={1000}
 					to="plan"
 					smooth={true}
 					className="bg-white bg-opacity-0 hover:bg-opacity-100 hover:text-color2 cursor-pointer text-lg  px-4 py-2 rounded-md"
 				>
 					Plan
-				</Link>
+				</ScrollLink>
 			</li>
 			<li>
-				<Link
+				<ScrollLink
 					duration={1000}
 					to="footer"
 					smooth={true}
 					className="bg-white bg-opacity-0 hover:bg-opacity-100 hover:text-color2 cursor-pointer text-lg  px-4 py-2 rounded-md"
 				>
 					Contact us
-				</Link>
+				</ScrollLink>
 			</li>
 			<li>
 				<Button
