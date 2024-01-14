@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 import { useAuth } from "../authContext";
 
 const MyDocument = () => {
+  const [query, setQuery] = useState("");
   const [documentData, setDocumentData] = useState<string[]>([]);
   const { principal, isAuthenticated, login } = useAuth();
 
@@ -24,19 +25,25 @@ const MyDocument = () => {
         return;
       }
     };
-    
+
     fetchData();
   }, [isAuthenticated, principal, login]);
+  const searchHandler = (searchWord: string) => {
+    setQuery(searchWord);
+  };
+  const filteredSearchData = documentData.filter((document) =>
+    document.toLowerCase().includes(query)
+  );
   return (
     <div className="ml-72 px-10 pt-10 pb-20 h-fit space-y-10">
       <h1 className="text-4xl font-bold text-color2">My Documents</h1>
-      <SearchBar />
+      <SearchBar onSearch={searchHandler}/>
       <section className="grid grid-cols-1 gap-2 mt-10 w-full place-items-end">
-        {documentData.length === 0 ? (
+        {filteredSearchData.length === 0 ? (
           <p>No documents data yet</p>
         ) : (
           <>
-            {documentData.map((doc, index) => (
+            {filteredSearchData.map((doc, index) => (
               <Document key={index} name={doc} />
             ))}
           </>
